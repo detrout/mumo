@@ -40,8 +40,8 @@ from mumo_module import (MumoModule,
                          commaSeperatedStrings,
                          x2bool)
 
-from db import SourceDB
-from users import (User, UserRegistry)
+from .db import SourceDB
+from .users import (User, UserRegistry)
 
 import re
     

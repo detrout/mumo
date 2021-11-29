@@ -31,7 +31,7 @@
 
 import unittest
 
-from users import User, UserRegistry
+from .users import User, UserRegistry
 
 class Test(unittest.TestCase):
 

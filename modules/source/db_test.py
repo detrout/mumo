@@ -30,7 +30,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import unittest
-from db import SourceDB
+from .db import SourceDB
 import sqlite3
 
 class SourceDBTest(unittest.TestCase):

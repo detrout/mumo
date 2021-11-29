@@ -34,7 +34,7 @@ from six.moves import queue
 import config
 import re
 import logging
-import source
+from . import source
 
 class InvalidChannelExceptionMock(Exception):
     pass
