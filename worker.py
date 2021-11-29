@@ -30,7 +30,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from threading import Thread
-from Queue import Queue, Empty
+from six.moves.queue import Queue, Empty
 from logging import getLogger
 
 def local_thread(fu):

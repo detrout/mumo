@@ -29,7 +29,7 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import Queue
+from six.moves import queue
 from worker import Worker, local_thread, local_thread_blocking
 from config import Config
 import sys
@@ -487,7 +487,7 @@ class MumoManager(Worker):
             log.error("Module '%s' already loaded", name)
             return
 
-        modqueue = Queue.Queue()
+        modqueue = queue.Queue()
         modmanager = MumoManagerRemote(self, name, modqueue)
 
         try:
@@ -624,7 +624,7 @@ class MumoManager(Worker):
                 if module in self.modules:
                     try:
                         while queue.get_nowait(): pass
-                    except Queue.Empty: pass
+                    except queue.Empty: pass
 
         for modinst in stoppedmodules.values():
             if modinst.isAlive():

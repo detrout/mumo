@@ -30,7 +30,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import unittest
-import Queue
+from six.moves import queue
 import config
 import re
 import logging
@@ -158,7 +158,7 @@ class ManagerMock():
     SERVERS_ALL = [-1]
     
     def __init__(self):
-        self.q = Queue.Queue()
+        self.q = queue.Queue()
         self.m = MurmurMock()
         self.meta = MetaMock()
         
