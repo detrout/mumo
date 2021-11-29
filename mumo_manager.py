@@ -580,7 +580,7 @@ class MumoManager(Worker):
         for name in names:
             try:
                 modinst = self.modules[name]
-                if not modinst.isAlive():
+                if not modinst.is_alive():
                     modinst.start()
                     log.debug("Module '%s' started", name)
                 else:
@@ -627,7 +627,7 @@ class MumoManager(Worker):
                     except queue.Empty: pass
 
         for modinst in stoppedmodules.values():
-            if modinst.isAlive():
+            if modinst.is_alive():
                 modinst.stop()
                 log.debug("Module '%s' is being stopped", name)
             else:
