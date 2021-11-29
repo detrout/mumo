@@ -30,6 +30,7 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 from six.moves import configparser
+import six
 import types
 
 class Config(object):
@@ -99,7 +100,7 @@ def x2bool(s):
     """
     if isinstance(s, bool):
         return s
-    elif isinstance(s, basestring):
+    elif isinstance(s, six.string_types):
         return s.strip().lower() in ['1', 'true']
     raise ValueError()
 

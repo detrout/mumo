@@ -29,6 +29,7 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+import six
 from config import (Config,
                     x2bool,
                     commaSeperatedIntegers,
@@ -44,7 +45,7 @@ class MumoModule(Worker):
         Worker.__init__(self, name, manager.getQueue())
         self.__manager = manager
         
-        if isinstance(configuration, basestring):
+        if isinstance(configuration, six.string_types):
             # If we are passed a string expect a config file there
             if configuration:
                 self.__cfg = Config(configuration, self.default_config)
