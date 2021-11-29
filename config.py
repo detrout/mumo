@@ -109,18 +109,18 @@ def commaSeperatedIntegers(s):
     Helper function to convert a string from the config
     containing comma seperated integers into a list of integers
     """
-    return map(int, s.split(','))
+    return list(map(int, s.split(',')))
 
 def commaSeperatedStrings(s):
     """
     Helper function to convert a string from the config
     containing comma seperated strings into a list of strings
     """
-    return map(str.strip, s.split(','))
+    return list(map(str.strip, s.split(',')))
 
 def commaSeperatedBool(s):
     """
     Helper function to convert a string from the config
     containing comma seperated strings into a list of booleans
     """
-    return map(x2bool, s.split(','))
+    return list(map(x2bool, s.split(',')))
