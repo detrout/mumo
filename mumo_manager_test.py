@@ -124,7 +124,7 @@ class MumoManagerTest(unittest.TestCase):
         man ,mod = self.up()
         
         tos = ["MyModule"]
-        self.assertEquals(list(man.stopModules(tos).iterkeys()), tos)
+        self.assertEquals(list(man.stopModules(tos).keys()), tos)
         mod.estopped.wait(timeout=1)
         assert(mod.estopped.is_set())
         

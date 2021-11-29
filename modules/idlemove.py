@@ -108,7 +108,7 @@ class idlemove(MumoModule):
                 if not server: continue
                 
                 if server:
-                    for user in server.getUsers().itervalues():
+                    for user in server.getUsers().values():
                             self.UpdateUserAutoAway(server, user)
         finally:
             # Renew the timer

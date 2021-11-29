@@ -302,13 +302,13 @@ class MumoManager(Worker):
 
         # Announce to all handlers of the given serverlist
         if server == self.MAGIC_ALL:
-            servers = mdict.iterkeys()
+            servers = iter(mdict)
         else:
             servers = [self.MAGIC_ALL, server]
 
         for server in servers:
             try:
-                for queue, handlers in mdict[server].iteritems():
+                for queue, handlers in mdict[server].items():
                     for handler in handlers:
                         self.__call_remote(queue, handler, function, *args, **kwargs)
             except KeyError:
@@ -322,7 +322,7 @@ class MumoManager(Worker):
         except AttributeError, e:
             mod = self.queues.get(queue, None)
             myname = ""
-            for name, mymod in self.modules.iteritems():
+            for name, mymod in self.modules.items():
                 if mod == mymod:
                     myname = name
             if myname:
@@ -341,7 +341,7 @@ class MumoManager(Worker):
         Call connected handler on all handlers
         """
         self.meta = meta
-        for queue, module in self.queues.iteritems():
+        for queue, module in self.queues.items():
             self.__call_remote(queue, module, "connected")
 
     @local_thread
@@ -349,7 +349,7 @@ class MumoManager(Worker):
         """
         Call disconnected handler on all handlers
         """
-        for queue, module in self.queues.iteritems():
+        for queue, module in self.queues.items():
             self.__call_remote(queue, module, "disconnected")
 
     @local_thread
@@ -575,7 +575,7 @@ class MumoManager(Worker):
 
         if not names:
             # If no names are given start all models
-            names = self.modules.iterkeys()
+            names = iter(self.modules)
 
         for name in names:
             try:
@@ -608,7 +608,7 @@ class MumoManager(Worker):
 
         if not names:
             # If no names are given start all models
-            names = self.modules.iterkeys()
+            names = iter(self.modules)
 
         for name in names:
             try:
@@ -620,20 +620,20 @@ class MumoManager(Worker):
 
         if force:
             # We will have to drain the modules queues
-            for queue, module in self.queues.iteritems():
+            for queue, module in self.queues.items():
                 if module in self.modules:
                     try:
                         while queue.get_nowait(): pass
                     except Queue.Empty: pass
 
-        for modinst in stoppedmodules.itervalues():
+        for modinst in stoppedmodules.values():
             if modinst.isAlive():
                 modinst.stop()
                 log.debug("Module '%s' is being stopped", name)
             else:
                 log.debug("Module '%s' already stopped", name)
 
-        for modinst in stoppedmodules.itervalues():
+        for modinst in stoppedmodules.values():
             modinst.join(timeout = self.cfg.modules.timeout)
 
         return stoppedmodules

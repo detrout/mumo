@@ -42,7 +42,7 @@ class Config(object):
         if (filename and not default) or \
             (not filename and not default): return
         
-        sections = set(default.iterkeys())
+        sections = set(default)
         if filename:
             cfg = configparser.RawConfigParser()
             cfg.optionxform = str
@@ -54,7 +54,7 @@ class Config(object):
             if type(section) == types.FunctionType: continue
             
             match = None
-            for default_section in default.iterkeys():
+            for default_section in default:
                 try:
                     if section == default_section or \
                         (type(default_section) == types.FunctionType and default_section(section)):

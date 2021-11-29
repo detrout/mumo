@@ -91,7 +91,7 @@ class seen(MumoModule):
                 return
             
             # Check online users
-            for cuser in server.getUsers().itervalues():
+            for cuser in server.getUsers().values():
                 if tuname == cuser.name:
                     msg = "User '%s' is currently online, has been idle for %s" % (tuname,
                                                                                            timedelta(seconds=cuser.idlesecs))
@@ -99,7 +99,7 @@ class seen(MumoModule):
                     return
                 
             # Check registrations
-            for cuid, cuname in server.getRegisteredUsers(tuname).iteritems():
+            for cuid, cuname in server.getRegisteredUsers(tuname).items():
                 if cuname == tuname:
                     ureg = server.getRegistration(cuid)
                     if ureg:
