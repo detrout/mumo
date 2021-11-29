@@ -31,6 +31,7 @@
 
 import unittest
 from .db import SourceDB
+import six
 import sqlite3
 
 class SourceDBTest(unittest.TestCase):
@@ -207,16 +208,16 @@ class SourceDBTest(unittest.TestCase):
                  (sid, cid, game, self.db.NO_SERVER, self.db.NO_TEAM))
         
         res = self.db.channelsFor(sid, game, server, team)
-        self.assertItemsEqual(res, chans[0:1])
+        six.assertCountEqual(self, res, chans[0:1])
         
         res = self.db.channelsFor(sid, game, server)
-        self.assertItemsEqual(res, chans[0:2])
+        six.assertCountEqual(self, res, chans[0:2])
         
         res = self.db.channelsFor(sid, game)
-        self.assertItemsEqual(res, chans)
+        six.assertCountEqual(self, res, chans)
         
         res = self.db.channelsFor(sid+1, game)
-        self.assertItemsEqual(res, [])
+        six.assertCountEqual(self, res, [])
     
     def testChannelTableConstraints(self):
         self.db.reset()
