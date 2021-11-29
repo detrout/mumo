@@ -83,7 +83,7 @@ value = True
         path = create_file()
         try:
             cfg = Config(path, self.cfg_default)
-            assert(cfg.world.domination == False)
+            assert(cfg.world.domination is False)
             assert(cfg.world.somestr == "fail")
             assert(cfg.world.somenum == 0)
             self.assertRaises(AttributeError, getattr, cfg.world, "testfallbacknum")
@@ -92,14 +92,14 @@ value = True
             os.remove(path)
     
     def testX2bool(self):
-        assert(x2bool(" true") == True)
-        assert(x2bool("false") == False)
-        assert(x2bool(" TrUe") == True)
-        assert(x2bool("FaLsE ") == False)
-        assert(x2bool("0 ") == False)
-        assert(x2bool("1") == True)
-        assert(x2bool(" 10") == False)
-        assert(x2bool("notabool") == False)
+        assert(x2bool(" true") is True)
+        assert(x2bool("false") is False)
+        assert(x2bool(" TrUe") is True)
+        assert(x2bool("FaLsE ") is False)
+        assert(x2bool("0 ") is False)
+        assert(x2bool("1") is True)
+        assert(x2bool(" 10") is False)
+        assert(x2bool("notabool") is False)
         
     def testCommaSeperatedIntegers(self):
         assert(commaSeperatedIntegers(" 1,2 , 333 ") == [1,2,333])
@@ -118,28 +118,28 @@ value = True
                 cfg = Config(path, self.cfg_default)
             except Exception as e:
                 print(e)
-            assert(cfg.world.domination == True)
+            assert(cfg.world.domination is True)
             assert(cfg.world.somestr == "Blabla")
             assert(cfg.world.somenum == 10)
             self.assertRaises(AttributeError, getattr, cfg.world, "testfallbacknum")
             self.assertEqual(cfg.world.blubber, "Things %(doesnotexistsasdefault)s")
             self.assertEqual(cfg.world.serverregex, re.compile(r"^\[[\w\d\-\(\):]{1,20}\]$"))
             assert(cfg.somethingelse.bla == "test")
-            assert(cfg.Server_10.value == False)
-            assert(cfg.Server_2.value == True)
-            assert(cfg.Server_9.value == True)
+            assert(cfg.Server_10.value is False)
+            assert(cfg.Server_2.value is True)
+            assert(cfg.Server_9.value is True)
         finally:
             os.remove(path)
             
     def testLoadDefault(self):
         cfg = Config(default=self.cfg_default)
-        assert(cfg.world.domination == False)
+        assert(cfg.world.domination is False)
         assert(cfg.somethingelse.bla == "test")
         assert(cfg.world.somenum == 0)
         
     def testGetItem(self):
         cfg = Config(default=self.cfg_default)
-        assert(cfg["world"]["domination"] == False)
+        assert(cfg["world"]["domination"] is False)
         assert("world" in cfg)
         
         def invalidaccess(c):

@@ -157,10 +157,10 @@ class WorkerTest(unittest.TestCase):
         assert(arg2 == "arg2")
 
     def tearDown(self):
-        assert(self.w.stopped == False)
+        assert(self.w.stopped is False)
         self.w.stop()
         self.w.join(5)
-        assert(self.w.stopped == True)
+        assert(self.w.stopped is True)
         
 
 
