@@ -41,7 +41,7 @@ def create_file(content = None):
     The file has to be manually deleted later on
     """
     fd, path = mkstemp()
-    f = os.fdopen(fd, "wb")
+    f = os.fdopen(fd, "wt")
     if content:
         f.write(content)
     f.flush()
