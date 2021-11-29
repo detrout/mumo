@@ -117,7 +117,7 @@ value = True
             try:
                 cfg = Config(path, self.cfg_default)
             except Exception as e:
-                print e
+                print(e)
             assert(cfg.world.domination == True)
             assert(cfg.world.somestr == "Blabla")
             assert(cfg.world.somenum == 10)
