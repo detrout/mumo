@@ -29,7 +29,7 @@
 # NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import ConfigParser
+from six.moves import configparser
 import types
 
 class Config(object):
@@ -43,7 +43,7 @@ class Config(object):
         
         sections = set(default.iterkeys())
         if filename:
-            cfg = ConfigParser.RawConfigParser()
+            cfg = configparser.RawConfigParser()
             cfg.optionxform = str
             with open(filename) as f:
                 cfg.readfp(f)
@@ -74,7 +74,7 @@ class Config(object):
                 else:
                     try:
                         self.__dict__[section] = cfg.items(section)
-                    except ConfigParser.NoSectionError:
+                    except configparser.NoSectionError:
                         self.__dict__[section] = []
             else:
                 self.__dict__[section] = Config()
@@ -84,7 +84,7 @@ class Config(object):
                     else:
                         try:
                             self.__dict__[section].__dict__[name] = conv(cfg.get(section, name))
-                        except (ValueError, ConfigParser.NoSectionError, ConfigParser.NoOptionError):
+                        except (ValueError, configparser.NoSectionError, configparser.NoOptionError):
                             self.__dict__[section].__dict__[name] = vdefault
     
     def __getitem__(self, key):
