@@ -30,7 +30,6 @@
 # SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import unittest
-import Queue
 from mumo_manager import MumoManager, MumoManagerRemote
 from mumo_module import MumoModule
 from logging import basicConfig, ERROR, getLogger
