@@ -285,7 +285,7 @@ class MumoManager(Worker):
         for server in servers:
             try:
                 mdict[server][queue].remove(handler)
-            except KeyError, ValueError:
+            except (KeyError, ValueError):
                 pass
 
     def __announce_to_dict(self, mdict, server, function, *args, **kwargs):
@@ -319,7 +319,7 @@ class MumoManager(Worker):
         try:
             func = getattr(handler, function) # Find out what to call on target
             queue.put((None, func, args, kwargs))
-        except AttributeError, e:
+        except AttributeError as e:
             mod = self.queues.get(queue, None)
             myname = ""
             for name, mymod in self.modules.items():
@@ -492,7 +492,7 @@ class MumoManager(Worker):
 
         try:
             modinst = modcls(name, modmanager, module_cfg)
-        except Exception, e:
+        except Exception as e:
             msg = "Module '%s' failed to initialize" % name
             log.error(msg)
             log.exception(e)
@@ -543,7 +543,7 @@ class MumoManager(Worker):
         try:
             mod = __import__(name)
             self.imports[name] = mod
-        except ImportError, e:
+        except ImportError as e:
             msg = "Failed to import module '%s', reason: %s" % (name, str(e))
             log.error(msg)
             raise FailedLoadModuleImportException(msg)

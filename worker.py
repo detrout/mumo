@@ -114,7 +114,7 @@ class Worker(Thread):
             try:
                 res = fu(*args, **kwargs)
                 ex = None
-            except Exception, e:
+            except Exception as e:
                 self.log().exception(e)
                 res = None
                 ex = e
