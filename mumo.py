@@ -99,7 +99,7 @@ def dynload_slice(prx):
         # In case it breaks with future versions use slice2py and search for
         # "IcePy.Operation('getSlice'," for updates in the generated bindings.
         op = None
-        if IcePy.intVersion() < 30500L:
+        if IcePy.intVersion() < 30500:
             # Old 3.4 signature with 9 parameters
             op = IcePy.Operation('getSlice', Ice.OperationMode.Idempotent, Ice.OperationMode.Idempotent, True, (), (), (), IcePy._t_string, ())
 
