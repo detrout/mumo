@@ -49,7 +49,7 @@ def create_file(content = None):
     return path
 
 class ConfigTest(unittest.TestCase):
-    cfg_content = """[world]
+    cfg_content = r"""[world]
 domination = True
 somestr = Blabla
 somenum = 10
@@ -69,7 +69,7 @@ value = True
                            ('somenumtest', int, 1),
                            ('blubber', str, "empty"),
                            ('serverregex', re.compile, '.*')),
-                    (lambda x: re.match("Server_\d+",x)):(('value', x2bool, True),),
+                    (lambda x: re.match(r"Server_\d+",x)):(('value', x2bool, True),),
                    'somethingelse':(('bla', str, "test"),)}
 
     def setUp(self):
@@ -123,7 +123,7 @@ value = True
             assert(cfg.world.somenum == 10)
             self.assertRaises(AttributeError, getattr, cfg.world, "testfallbacknum")
             self.assertEqual(cfg.world.blubber, "Things %(doesnotexistsasdefault)s")
-            self.assertEqual(cfg.world.serverregex, re.compile("^\[[\w\d\-\(\):]{1,20}\]$"))
+            self.assertEqual(cfg.world.serverregex, re.compile(r"^\[[\w\d\-\(\):]{1,20}\]$"))
             assert(cfg.somethingelse.bla == "test")
             assert(cfg.Server_10.value == False)
             assert(cfg.Server_2.value == True)

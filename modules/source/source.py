@@ -56,7 +56,7 @@ class source(MumoModule):
                              ('servername', str, "%(server)s"),
                              ('teams', commaSeperatedStrings, ["Lobby", "Spectator", "Team one", "Team two", "Team three", "Team four"]),
                              ('restrict', x2bool, True),
-                             ('serverregex', re.compile, re.compile("^\[[\w\d\-\(\):]{1,20}\]$")),
+                             ('serverregex', re.compile, re.compile(r"^\[[\w\d\-\(\):]{1,20}\]$")),
                              ('deleteifunused', x2bool, True)
                           )
     
