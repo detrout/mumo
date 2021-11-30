@@ -151,17 +151,6 @@ class MumoManagerTest(unittest.TestCase):
         man.announceDisconnected()
         self.down(man, mod)
     
-    def testContextCallback(self):
-        man, mod = self.up()
-        man.announceConnected()
-        mod.econnected.wait(timeout=1)
-        assert(mod.econnected.is_set())
-        man.announceContext(man.MAGIC_ALL, "contextCallMe", "server", "arg1", arg2 = "arg2")
-        mod.econtext.wait(timeout=1)
-        assert(mod.econtext.is_set())
-        man.announceDisconnected()
-        self.down(man, mod)
-    
     def testServerCallback(self):
         man, mod = self.up()
         man.announceConnected()
