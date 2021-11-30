@@ -65,7 +65,6 @@ class MumoManagerTest(unittest.TestCase):
                 man = self.manager()
                 man.subscribeMetaCallbacks(self)
                 man.subscribeServerCallbacks(self)
-                man.subscribeContextCallbacks(self)
                 self.econnected.set()
             
             def disconnected(self):

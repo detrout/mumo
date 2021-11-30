@@ -59,7 +59,6 @@ class test(MumoModule):
         log.debug("Ice connected, register for everything out there")
         manager.subscribeMetaCallbacks(self)
         manager.subscribeServerCallbacks(self, manager.SERVERS_ALL)
-        manager.subscribeContextCallbacks(self, manager.SERVERS_ALL)
     
     @logModFu
     def disconnected(self):
