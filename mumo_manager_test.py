@@ -94,7 +94,16 @@ class MumoManagerTest(unittest.TestCase):
     #--- Helpers for independent test env creation
     #
     def up(self):
-        man = MumoManager(None)
+        class customContextCallback:
+            def __init__(self, contextActionCallback, *ctx):
+                self.cb = contextActionCallback
+                self.ctx = ctx
+
+            def contextAction(self, *args, **argv):
+                # (action, user, target_session, target_chanid, current=None)
+                self.cb(*(self.ctx + args), **argv)
+
+        man = MumoManager(None, customContextCallback)
         man.start()
 
         mod = man.loadModuleCls("MyModule", self.mymod, self.cfg)
