@@ -193,7 +193,7 @@ class Test(unittest.TestCase):
         testconfig.__dict__['game:tf'] = spare.generic
         testconfig.__dict__['game:tf'].name = "Team Fortress 2"
         testconfig.__dict__['game:tf'].teams = ["Lobby", "Spectator", "Blue", "Red"]
-        testconfig.__dict__['game:tf'].serverregex = re.compile("^\[A-1:123\]$")
+        testconfig.__dict__['game:tf'].serverregex = re.compile(r"^\[A-1:123\]$")
         testconfig.__dict__['game:tf'].servername = "Test %(game)s %(server)s"
         
         self.s = source.source("source", self.mm, testconfig)
