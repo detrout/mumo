@@ -37,7 +37,7 @@
 
 from mumo_module import (commaSeperatedIntegers,
                          MumoModule)
-import cgi
+import html
 
 class samplecontext(MumoModule):
     default_config = {'samplecontext':(
@@ -72,13 +72,13 @@ class samplecontext(MumoModule):
     def __on_poke_user(self, server, action, user, target):
         assert action == self.action_poke_user
         self.log().info(user.name + " poked " + target.name)
-        server.sendMessage(target.session, cgi.escape(user.name) + " poked you")
+        server.sendMessage(target.session, html.escape(user.name) + " poked you")
 
     def __on_info(self, server, action, user, target):
         assert action == self.action_info
         self.log().info(user.name + " wants info on " + str(target));
         server.sendMessage(user.session,
-                "<small><pre>" + cgi.escape(str(target)) + "</pre></small>")
+                "<small><pre>" + html.escape(str(target)) + "</pre></small>")
 
     def __on_remove_this(self, server, action, user, target):
         # This will remove the entry identified by "action" from
